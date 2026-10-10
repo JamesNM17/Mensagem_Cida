@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#8b668f">
-  <title>Uma carta especial para a professora Cida</title>
+  <title>Uma homenagem especial à Professora Cida</title>
+
   <style>
     :root {
       --ink: #453347;
@@ -15,136 +16,1678 @@
       --accent: #8b668f;
       --accent-dark: #65436b;
       --gold: #d6ad62;
+      --pink: #d98fae;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin: 0;
+      position: relative;
       min-height: 100vh;
-      padding: 28px 16px 40px;
+      margin: 0;
+      padding: 30px 16px 40px;
+      overflow-x: hidden;
       color: var(--ink);
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 8% 14%, rgba(255,255,255,.8) 0 3px, transparent 4px),
-        radial-gradient(circle at 90% 20%, rgba(255,255,255,.7) 0 4px, transparent 5px),
+        radial-gradient(ellipse at 10% 10%, #fbe8f0, transparent 42%),
+        radial-gradient(ellipse at 90% 40%, #e9dcf5, transparent 45%),
         linear-gradient(145deg, #f8e9ed, #efe7f5 52%, #fff4e5);
+    }
+
+    /* ==========================================
+       FUNDO MÁGICO
+       ========================================== */
+
+    .aurora {
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 30%,
+          rgba(190,133,210,.18), transparent 37%),
+        radial-gradient(ellipse at 80% 40%,
+          rgba(240,157,190,.16), transparent 40%),
+        radial-gradient(ellipse at 50% 80%,
+          rgba(214,173,98,.09), transparent 35%);
+      filter: blur(35px);
+      animation: auroraFlow 20s ease-in-out infinite alternate;
+    }
+
+    #adminParticles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .5;
+    }
+
+    /* ==========================================
+       CARDS FLUTUANTES DE ADMINISTRAÇÃO
+
+       Os cards ocupam somente as laterais.
+       Ficam atrás da carta e não recebem cliques.
+       ========================================== */
+
+    .floating-cards {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .floating-card {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 128px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 17px;
+      color: var(--accent-dark);
+      background: rgba(255,253,249,.32);
+      box-shadow:
+        0 8px 30px rgba(139,102,143,.08),
+        inset 0 0 15px rgba(255,255,255,.25);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      opacity: .55;
+      animation: cardFloat 8s ease-in-out infinite;
+    }
+
+    .floating-card.card-left-top {
+      left: calc(50% - 570px);
+      top: 21%;
+    }
+
+    .floating-card.card-left-bottom {
+      left: calc(50% - 570px);
+      top: 59%;
+      animation-delay: -3s;
+    }
+
+    .floating-card.card-right-top {
+      right: calc(50% - 570px);
+      top: 28%;
+      animation-delay: -2s;
+    }
+
+    .floating-card.card-right-bottom {
+      right: calc(50% - 570px);
+      top: 64%;
+      animation-delay: -4s;
+    }
+
+    .floating-card .card-icon {
+      font-size: 1.55rem;
+      filter: drop-shadow(0 0 8px rgba(177,138,192,.25));
+    }
+
+    .floating-card .card-label {
+      font-size: .61rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .floating-card .card-caption {
+      font-size: .65rem;
+      line-height: 1.5;
+      opacity: .85;
+    }
+
+    .mini-chart {
+      display: flex;
+      align-items: end;
+      gap: 5px;
+      height: 34px;
+      margin-top: 3px;
+    }
+
+    .mini-chart span {
+      flex: 1;
+      height: 40%;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(to top, #b18ac0, #d98fae);
+      animation: barPulse 2.5s ease-in-out infinite alternate;
+    }
+
+    .mini-chart span:nth-child(2) {
+      height: 65%;
+      animation-delay: -.4s;
+    }
+
+    .mini-chart span:nth-child(3) {
+      height: 48%;
+      animation-delay: -.8s;
+    }
+
+    .mini-chart span:nth-child(4) {
+      height: 85%;
+      animation-delay: -1.2s;
+    }
+
+    .mini-chart span:nth-child(5) {
+      height: 100%;
+      animation-delay: -1.6s;
+    }
+
+    .mini-progress {
+      height: 5px;
+      overflow: hidden;
+      margin-top: 4px;
+      border-radius: 10px;
+      background: rgba(139,102,143,.14);
+    }
+
+    .mini-progress span {
+      display: block;
+      width: 75%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #b18ac0, #d98fae, #d6ad62);
+      animation: progressPulse 4s ease-in-out infinite alternate;
+    }
+
+    .mini-network {
+      position: relative;
+      height: 34px;
+      margin-top: 3px;
+    }
+
+    .mini-network::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 18%;
+      width: 64%;
+      height: 1px;
+      background: rgba(139,102,143,.6);
+    }
+
+    .mini-network span {
+      position: absolute;
+      top: 8px;
+      width: 15px;
+      height: 15px;
+      border: 1px solid rgba(139,102,143,.5);
+      border-radius: 50%;
+      background: rgba(255,255,255,.8);
+      box-shadow: 0 0 10px rgba(177,138,192,.2);
+    }
+
+    .mini-network span:nth-child(1) { left: 8%; }
+    .mini-network span:nth-child(2) { left: 42%; top: 0; }
+    .mini-network span:nth-child(3) { right: 8%; }
+
+    .mini-target {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-top: 2px;
+      border: 1px solid rgba(139,102,143,.4);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 5px rgba(177,138,192,.07),
+        0 0 0 10px rgba(217,143,174,.05);
+      font-size: .9rem;
+    }
+
+    /* Telas menores: retira os cards para nunca
+       atrapalharem o texto ou os elementos da carta. */
+
+    @media (max-width: 1199px) {
+      .floating-cards {
+        display: none;
+      }
+    }
+
+    /* ==========================================
+       BRILHOS E PARTÍCULAS
+       ========================================== */
+
+    .sparkle {
+      position: fixed;
+      z-index: 1;
+      color: white;
+      pointer-events: none;
+      text-shadow:
+        0 0 7px white,
+        0 0 16px rgba(193,138,196,.55);
+      animation: twinkle 4s ease-in-out infinite;
+    }
+
+    .sparkle-one { top: 15%; left: 14%; }
+    .sparkle-two { top: 47%; right: 10%; animation-delay: -1s; }
+    .sparkle-three { bottom: 20%; left: 12%; animation-delay: -2s; }
+    .sparkle-four { top: 73%; right: 16%; animation-delay: -3s; }
+
+    /* ==========================================
+       CARTA PRINCIPAL
+       ========================================== */
+
+    .page {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 850px);
+      margin: 0 auto;
+      animation: pageAppear 1s ease both;
+    }
+
+    .letter {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(27px, 6vw, 62px);
+      border: 1px solid rgba(139,102,143,.2);
+      border-radius: 25px;
+      background: rgba(255,253,249,.98);
+      box-shadow:
+        0 25px 70px rgba(83,55,86,.17),
+        0 0 24px rgba(191,140,210,.08);
+      animation: letterGlow 6s ease-in-out infinite;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 12px;
+      border: 2px dashed #d8bfdc;
+      border-radius: 17px;
+      pointer-events: none;
+    }
+
+    .letter::after {
+      content: "✧";
+      position: absolute;
+      z-index: -1;
+      top: 28px;
+      right: 27px;
+      color: rgba(214,173,98,.2);
+      font-size: 100px;
+      pointer-events: none;
+      animation: rotateSlow 35s linear infinite;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topline {
+      color: var(--accent);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .19em;
+      font-size: .72rem;
+      font-weight: 800;
+      line-height: 1.8;
+    }
+
+    .flower {
+      margin: 17px 0 12px;
+      color: var(--gold);
+      text-align: center;
+      font-size: 2.15rem;
+      line-height: 1.3;
+      animation: flowerPulse 4s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      text-align: center;
+      font-size: clamp(2.25rem, 7vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      text-shadow: 0 0 20px rgba(181,133,198,.14);
+      animation: titleAppear 1s ease both;
+    }
+
+    .course {
+      width: fit-content;
+      max-width: 100%;
+      margin: 17px auto 0;
+      padding: 10px 21px;
+      border: 1px solid rgba(139,102,143,.2);
+      border-radius: 30px;
+      color: var(--accent-dark);
+      background: linear-gradient(120deg, #f4e8f5, #fce8ed);
+      font-size: .84rem;
+      font-weight: 900;
+      letter-spacing: .13em;
+      box-shadow: 0 0 15px rgba(193,138,196,.1);
+      animation: courseGlow 5s ease-in-out infinite;
+    }
+
+    .subtitle {
+      max-width: 510px;
+      margin: 20px auto 30px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .ribbon {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 32px;
+      padding: 11px 21px;
+      border-radius: 20px 7px 20px 7px;
+      color: var(--accent-dark);
+      background: linear-gradient(120deg, #eee2f0, #f8e5e7, #eee2f0);
+      background-size: 200% 200%;
+      text-align: center;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(139,102,143,.09);
+      transform: rotate(-1deg);
+      animation: ribbonShimmer 7s ease infinite;
+    }
+
+    .greeting {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: 1.18rem;
+      font-weight: 800;
+    }
+
+    p {
+      margin: 0 0 17px;
+      font-size: 1.02rem;
+      line-height: 1.9;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin: 32px 0;
+      color: var(--accent);
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: "";
+      width: 70px;
+      max-width: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c7a4cf, transparent);
+    }
+
+    .admin-heading {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .admin-description {
+      max-width: 520px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+
+    /* Painel de competências */
+
+    .admin-dashboard {
+      margin: 28px 0;
+      padding: 25px 20px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(248,229,231,.55), transparent 45%),
+        linear-gradient(140deg, #fbf3fc, #fff7f3);
+      box-shadow: 0 8px 25px rgba(139,102,143,.07);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .dashboard-card {
+      min-width: 0;
+      padding: 18px 15px;
+      border: 1px solid rgba(139,102,143,.12);
+      border-radius: 15px;
+      background: rgba(255,255,255,.82);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(139,102,143,.1);
+    }
+
+    .dashboard-icon {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 1.7rem;
+    }
+
+    .dashboard-card h3 {
+      margin: 0 0 6px;
+      color: var(--accent-dark);
+      font-size: .96rem;
+    }
+
+    .dashboard-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.65;
+    }
+
+    /* Gráfico */
+
+    .inspiration-chart {
+      margin: 28px 0;
+      padding: 25px 20px 20px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 19px;
+      background: linear-gradient(140deg, #fbf3fc, #fff7f3);
+      box-shadow: 0 8px 24px rgba(83,55,86,.06);
+    }
+
+    .inspiration-chart h2 {
+      margin: 0 0 7px;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .chart-description {
+      margin: 0 0 21px;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .bar-label {
+      color: var(--ink);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    .bar-track {
+      height: 13px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: rgba(139,102,143,.12);
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #b18ac0, #d98fae, #e4bd77);
+      animation: barGrow 1.8s ease forwards;
+    }
+
+    .bar-one { --bar-width: 94%; animation-delay: .2s; }
+    .bar-two { --bar-width: 88%; animation-delay: .4s; }
+    .bar-three { --bar-width: 97%; animation-delay: .6s; }
+    .bar-four { --bar-width: 100%; animation-delay: .8s; }
+
+    .chart-note {
+      margin: 17px 0 0;
+      color: var(--muted);
+      font-size: .77rem;
+      font-style: italic;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Ciclo administrativo */
+
+    .management-cycle {
+      margin: 30px 0;
+      padding: 25px 19px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 20px;
+      background: linear-gradient(145deg, #f7edf8, #fff5f1);
+    }
+
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cycle-step {
+      padding: 20px 13px;
+      border: 1px solid rgba(139,102,143,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.85);
+      text-align: center;
+      animation: stepFloat 5s ease-in-out infinite;
+    }
+
+    .cycle-step:nth-child(2) { animation-delay: -.8s; }
+    .cycle-step:nth-child(3) { animation-delay: -1.6s; }
+    .cycle-step:nth-child(4) { animation-delay: -2.4s; }
+
+    .cycle-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    .cycle-icon {
+      margin-bottom: 7px;
+      font-size: 1.65rem;
+    }
+
+    .cycle-step h3 {
+      margin: 0 0 7px;
+      color: var(--accent-dark);
+      font-size: .97rem;
+    }
+
+    .cycle-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.65;
+    }
+
+    .cycle-caption {
+      margin: 19px 0 0;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: .9rem;
+      font-style: italic;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* Organograma */
+
+    .org-chart {
+      margin: 30px 0;
+      padding: 24px 15px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 19px;
+      background: linear-gradient(135deg, #fff7fa, #f4ecf7);
+      text-align: center;
+    }
+
+    .org-top {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      color: white;
+      background: linear-gradient(135deg, #8b668f, #b18ac0);
+      font-weight: 800;
+      line-height: 1.55;
+      box-shadow: 0 5px 15px rgba(101,67,107,.13);
+    }
+
+    .org-top small {
+      display: block;
+      font-size: .75rem;
+      font-weight: 500;
+      opacity: .92;
+    }
+
+    .org-stem {
+      width: 2px;
+      height: 28px;
+      margin: 0 auto;
+      background: #c6a7cf;
+    }
+
+    .org-branch {
+      width: 76%;
+      max-width: 440px;
+      height: 2px;
+      margin: 0 auto;
+      background: #c6a7cf;
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .org-node {
+      padding: 14px 7px;
+      border: 1px solid rgba(139,102,143,.18);
+      border-radius: 12px;
+      color: var(--accent-dark);
+      background: rgba(255,255,255,.88);
+      font-size: .78rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .org-node span {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.45rem;
+    }
+
+    .org-caption {
+      margin: 17px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Metas */
+
+    .goals-panel {
+      margin: 30px 0;
+      padding: 24px 20px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 19px;
+      background:
+        radial-gradient(circle at bottom left, rgba(217,143,174,.1), transparent 40%),
+        linear-gradient(140deg, #f9f0fa, #fff8f3);
+    }
+
+    .goal-item {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      align-items: start;
+      gap: 12px;
+      margin: 19px 0;
+    }
+
+    .goal-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #eee2f0, #f8e5e7);
+      font-size: 1.15rem;
+    }
+
+    .goal-item h3 {
+      margin: 0 0 4px;
+      color: var(--accent-dark);
+      font-size: .93rem;
+    }
+
+    .goal-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.7;
+    }
+
+    .goal-line {
+      height: 5px;
+      overflow: hidden;
+      margin-top: 9px;
+      border-radius: 20px;
+      background: rgba(139,102,143,.12);
+    }
+
+    .goal-line span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #b18ac0, #d98fae);
+      animation: goalGrow 1.8s ease forwards;
+    }
+
+    .values-strip {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 26px 0;
     }
-    .page { width: min(100%, 760px); }
-    .toolbar {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
-      margin: 0 0 18px;
+
+    .value-tag {
+      padding: 9px 13px;
+      border: 1px solid rgba(139,102,143,.15);
+      border-radius: 30px;
+      color: var(--accent-dark);
+      background: rgba(255,255,255,.8);
+      font-size: .79rem;
+      font-weight: 800;
     }
-    button {
-      border: 1px solid rgba(101,67,107,.22); border-radius: 999px;
-      background: rgba(255,253,249,.9); color: var(--accent-dark);
-      padding: 11px 17px; font-size: .92rem; font-weight: 700;
-      cursor: pointer; box-shadow: 0 4px 14px rgba(69,51,71,.08);
-      transition: transform .18s ease, background .18s ease;
-    }
-    button:hover { transform: translateY(-2px); background: white; }
-    .letter {
-      position: relative; overflow: hidden;
-      background: var(--paper); border-radius: 22px;
-      padding: clamp(25px, 6vw, 58px);
-      box-shadow: 0 22px 60px rgba(83,55,86,.17);
-      border: 1px solid rgba(139,102,143,.18);
-    }
-    .letter::before {
-      content: ""; position: absolute; inset: 13px; border: 2px dashed #d8bfdc;
-      border-radius: 15px; pointer-events: none;
-    }
-    .content { position: relative; z-index: 1; }
-    .topline { text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .74rem; font-weight: 800; }
-    .flower { font-size: 2rem; line-height: 1.2; text-align: center; margin: 15px 0 8px; color: var(--gold); }
-    h1 { text-align: center; margin: 0; font-size: clamp(2.1rem, 7vw, 3.7rem); line-height: 1.05; color: var(--accent-dark); letter-spacing: -.04em; }
-    .subtitle { text-align: center; max-width: 470px; margin: 15px auto 30px; color: var(--muted); font-size: 1.03rem; line-height: 1.65; }
-    .ribbon { width: fit-content; margin: 0 auto 27px; padding: 9px 18px; border-radius: 20px 7px 20px 7px; background: var(--lavender); color: var(--accent-dark); font-weight: 800; transform: rotate(-1deg); }
-    .greeting { font-size: 1.18rem; font-weight: 800; margin: 0 0 12px; }
-    p { font-size: 1.02rem; line-height: 1.85; margin: 0 0 15px; }
+
+    /* Poesia */
+
     .poem {
-      margin: 27px 0; padding: 22px 15px; text-align: center;
-      background: linear-gradient(135deg, #f5eaf6, #fff0ee); border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      margin: 30px 0;
+      padding: 26px 17px;
       border-left: 4px solid var(--accent);
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f5eaf6, #fff0ee);
+      text-align: center;
     }
-    .poem h2 { font-size: 1.05rem; color: var(--accent-dark); margin: 0 0 13px; }
-    .poem p { font-family: Georgia, serif; font-style: italic; line-height: 1.75; margin: 0; }
-    .closing { margin-top: 24px; }
-    .signature { margin-top: 23px; font-weight: 800; color: var(--accent-dark); font-size: 1.08rem; }
-    .tiny-hearts { text-align: center; letter-spacing: .42em; color: #c47b98; margin: 26px 0 4px; font-size: 1.15rem; }
-    .footer { text-align: center; margin: 16px auto 0; font-size: .83rem; color: #7d6d80; }
-    @media (max-width: 480px) {
-      body { padding: 14px 10px 25px; }
-      .letter { padding: 34px 25px; }
-      .letter::before { inset: 8px; }
-      p { font-size: .97rem; }
+
+    .poem::after {
+      content: "♡";
+      position: absolute;
+      right: 8px;
+      bottom: -19px;
+      color: rgba(196,123,152,.12);
+      font-size: 90px;
+      pointer-events: none;
     }
+
+    .poem h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 16px;
+      color: var(--accent-dark);
+      font-size: 1.08rem;
+    }
+
+    .poem p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    .closing {
+      margin-top: 25px;
+    }
+
+    .signature {
+      margin-top: 25px;
+      color: var(--accent-dark);
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.9;
+    }
+
+    .tiny-hearts {
+      margin: 28px 0 5px;
+      color: #c47b98;
+      text-align: center;
+      letter-spacing: .35em;
+      font-size: 1.35rem;
+      animation: heartBeat 3s ease-in-out infinite;
+    }
+
+    .final-message {
+      margin: 17px auto 0;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: .98rem;
+      font-style: italic;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footer {
+      margin: 19px auto 0;
+      color: #7d6d80;
+      text-align: center;
+      font-size: .83rem;
+      line-height: 1.7;
+    }
+
+    /* ==========================================
+       ANIMAÇÕES
+       ========================================== */
+
+    @keyframes auroraFlow {
+      from { transform: translate(-2%, -1%) scale(1); }
+      to { transform: translate(2%, 3%) scale(1.05); }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
+    }
+
+    @keyframes barPulse {
+      from { filter: brightness(.85); }
+      to { filter: brightness(1.25); }
+    }
+
+    @keyframes progressPulse {
+      from { width: 35%; }
+      to { width: 88%; }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: .18; transform: scale(.8); }
+      50% { opacity: .5; transform: scale(1.1); }
+    }
+
+    @keyframes pageAppear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes titleAppear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes letterGlow {
+      0%, 100% {
+        box-shadow:
+          0 25px 70px rgba(83,55,86,.16),
+          0 0 20px rgba(191,140,210,.08);
+      }
+      50% {
+        box-shadow:
+          0 25px 70px rgba(83,55,86,.17),
+          0 0 30px rgba(217,143,174,.13);
+      }
+    }
+
+    @keyframes flowerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    @keyframes courseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(193,138,196,.08); }
+      50% { box-shadow: 0 0 18px rgba(193,138,196,.18); }
+    }
+
+    @keyframes ribbonShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes barGrow {
+      from { width: 0; }
+      to { width: var(--bar-width); }
+    }
+
+    @keyframes stepFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes goalGrow {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    /* Celulares e tablets */
+
+    @media (max-width: 600px) {
+      body {
+        padding: 14px 10px 25px;
+      }
+
+      .letter {
+        padding: 36px 22px;
+        border-radius: 20px;
+      }
+
+      .letter::before {
+        inset: 8px;
+      }
+
+      .letter::after {
+        top: 20px;
+        right: 17px;
+        font-size: 65px;
+      }
+
+      .topline {
+        font-size: .64rem;
+        letter-spacing: .13em;
+      }
+
+      .flower {
+        font-size: 1.8rem;
+      }
+
+      .subtitle {
+        font-size: .96rem;
+      }
+
+      p {
+        font-size: .97rem;
+        line-height: 1.85;
+      }
+
+      .dashboard-grid,
+      .cycle-grid {
+        gap: 9px;
+      }
+
+      .dashboard-card {
+        padding: 15px 11px;
+      }
+
+      .dashboard-card h3 {
+        font-size: .88rem;
+      }
+
+      .dashboard-card p,
+      .cycle-step p {
+        font-size: .77rem;
+      }
+
+      .bar-row {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .bar-label {
+        font-size: .76rem;
+      }
+
+      .inspiration-chart,
+      .management-cycle,
+      .goals-panel {
+        padding: 20px 13px;
+      }
+
+      .cycle-step {
+        padding: 16px 9px;
+      }
+
+      .cycle-step h3 {
+        font-size: .89rem;
+      }
+
+      .org-grid {
+        gap: 6px;
+      }
+
+      .org-node {
+        padding: 12px 5px;
+        font-size: .68rem;
+      }
+
+      .org-node span {
+        font-size: 1.25rem;
+      }
+
+      .poem {
+        padding: 23px 12px;
+      }
+
+      .poem p {
+        font-size: .94rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     @media print {
-      body { background: white; padding: 0; }
-      .toolbar, .footer { display: none; }
-      .page { width: 100%; }
-      .letter { box-shadow: none; border: none; border-radius: 0; padding: 24px 32px; }
-      .letter::before { inset: 8px; }
-      p { font-size: 11.5pt; line-height: 1.6; }
-      .poem { break-inside: avoid; }
+      @page {
+        margin: 14mm;
+      }
+
+      body {
+        padding: 0;
+        background: white !important;
+      }
+
+      .aurora,
+      #adminParticles,
+      .floating-cards,
+      .sparkle,
+      .footer {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        animation: none;
+      }
+
+      .letter {
+        padding: 25px;
+        border: 1px solid #d8bfdc;
+        border-radius: 12px;
+        box-shadow: none;
+        animation: none;
+      }
+
+      .letter::before,
+      .letter::after {
+        display: none;
+      }
+
+      .admin-dashboard,
+      .dashboard-card,
+      .management-cycle,
+      .cycle-step,
+      .inspiration-chart,
+      .org-chart,
+      .goals-panel,
+      .poem {
+        break-inside: avoid;
+      }
+
+      .bar,
+      .goal-line span {
+        animation: none;
+      }
+
+      .bar-one { width: 94%; }
+      .bar-two { width: 88%; }
+      .bar-three { width: 97%; }
+      .bar-four { width: 100%; }
+
+      .goal-line span {
+        width: 100%;
+      }
+
+      p {
+        font-size: 10.5pt;
+        line-height: 1.6;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <div class="aurora" aria-hidden="true"></div>
+  <canvas id="adminParticles" aria-hidden="true"></canvas>
+
+  <!-- Cards holográficos flutuantes nas margens da tela -->
+  <div class="floating-cards" aria-hidden="true">
+
+    <div class="floating-card card-left-top">
+      <span class="card-icon">📊</span>
+      <span class="card-label">ANÁLISE DE DADOS</span>
+      <span class="card-caption">Conhecimento que transforma decisões.</span>
+      <div class="mini-chart">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="floating-card card-left-bottom">
+      <span class="card-icon">🤝</span>
+      <span class="card-label">TRABALHO EM EQUIPE</span>
+      <span class="card-caption">Pessoas conectadas a um propósito.</span>
+      <div class="mini-network">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="floating-card card-right-top">
+      <span class="card-icon">🎯</span>
+      <span class="card-label">PLANEJAMENTO</span>
+      <span class="card-caption">Cada objetivo começa com uma ideia.</span>
+      <div class="mini-progress">
+        <span></span>
+      </div>
+    </div>
+
+    <div class="floating-card card-right-bottom">
+      <span class="card-icon">📈</span>
+      <span class="card-label">CRESCIMENTO</span>
+      <span class="card-caption">Evoluir, aprender e alcançar novas metas.</span>
+      <div class="mini-target">✦</div>
+    </div>
+
+  </div>
+
+  <div class="sparkle sparkle-one" aria-hidden="true">✦</div>
+  <div class="sparkle sparkle-two" aria-hidden="true">✧</div>
+  <div class="sparkle sparkle-three" aria-hidden="true">✦</div>
+  <div class="sparkle sparkle-four" aria-hidden="true">✧</div>
+
   <main class="page">
+
     <article class="letter" aria-labelledby="title">
+
       <div class="content" id="letterContent">
-        <div class="topline">Um presente feito com carinho</div>
-        <div class="flower" aria-hidden="true">✿ ✧ ❀ ✧ ✿</div>
-        <h1 id="title">Professora Cida</h1>
-        <div class="subtitle">Algumas pessoas deixam lembranças bonitas. Outras deixam um pouquinho de luz por onde passam.</div>
-        <div class="ribbon">Uma homenagem especial ♡</div>
-        <p class="greeting">Querida professora Cida,</p>
-        <p>Quero deixar registrado, em palavras simples, um sentimento muito bonito: a gratidão. Nem sempre conseguimos dizer pessoalmente o quanto a presença de alguém pode ser importante, então resolvi transformar esse carinho em uma pequena homenagem.</p>
-        <p>Ser professora é muito mais do que compartilhar conhecimentos. É participar de caminhos, despertar possibilidades e mostrar que sempre podemos aprender algo novo. Um gesto de atenção, uma palavra de incentivo ou um ensinamento podem permanecer na memória de alguém por muito tempo.</p>
-        <p>Por isso, espero que esta carta chegue até você como um abraço em forma de palavras. Que ela consiga trazer um sorriso ao seu rosto e alegrar seu coração, nem que seja só um pouquinho. Você merece receber também o carinho que tantas vezes a vida nos convida a oferecer aos outros.</p>
-        <div class="poem">
-          <h2>Pequena poesia</h2>
-          <p>Há quem ensine com palavras,<br>
-e quem ensine também com o olhar;<br>
-há quem acenda novas ideias<br>
-e ajude outros sonhos a brotar.<br><br>
-Que a vida lhe devolva em flores<br>
-a bondade que espalha pelo caminho;<br>
-e que nunca lhe faltem motivos,<br>
-para sorrir com carinho.</p>
+
+        <div class="topline">
+          Um presente feito com carinho
         </div>
-        <p>Professora Cida, que você nunca se esqueça de que ensinar tem um alcance que nem sempre conseguimos medir. Às vezes, uma atitude que parece pequena se torna uma lembrança enorme na vida de alguém. Espero que você reconheça a importância do que faz e o bem que pode deixar no mundo.</p>
-        <p>Que seus dias sejam cheios de paz, afeto, reconhecimento e motivos para continuar acreditando na beleza daquilo que você faz. Obrigado por fazer parte desse mundo de pessoas que compartilham conhecimento e ajudam a tornar a caminhada um pouco melhor.</p>
-        <p class="closing">Receba esta pequena homenagem com todo o carinho que ela carrega.</p>
-        <div class="signature">Com carinho e gratidão, <br>uma pessoa que quis tornar seu dia um pouco mais feliz. ♡</div>
-        <div class="tiny-hearts" aria-hidden="true">♡ ✿ ♡ ✿ ♡</div>
+
+        <div class="flower" aria-hidden="true">
+          ✿ ✧ ❀ ✧ ✿
+        </div>
+
+        <h1 id="title">Professora Cida</h1>
+
+        <div class="course">
+          ✦ ADMINISTRAÇÃO ✦
+        </div>
+
+        <div class="subtitle">
+          Algumas pessoas deixam lembranças bonitas.
+          Outras deixam um pouquinho de luz por onde passam.
+          E existem aquelas que transformam conhecimento em inspiração.
+        </div>
+
+        <div class="ribbon">
+          Uma homenagem especial ♡
+        </div>
+
+        <p class="greeting">Querida professora Cida,</p>
+
+        <p>
+          Quero deixar registrado, em palavras simples, um sentimento
+          muito bonito: a gratidão. Nem sempre conseguimos dizer
+          pessoalmente o quanto a presença de alguém pode ser importante,
+          então resolvi transformar esse carinho em uma pequena homenagem.
+        </p>
+
+        <p>
+          Ser professora é muito mais do que compartilhar conhecimentos.
+          É participar de caminhos, despertar possibilidades e mostrar
+          que sempre podemos aprender algo novo. Um gesto de atenção,
+          uma palavra de incentivo ou um ensinamento podem permanecer
+          na memória de alguém por muito tempo.
+        </p>
+
+        <p>
+          Por isso, espero que esta carta chegue até você como um abraço
+          em forma de palavras. Que ela consiga trazer um sorriso ao seu
+          rosto e alegrar seu coração, nem que seja só um pouquinho.
+          Você merece receber também o carinho que tantas vezes a vida
+          nos convida a oferecer aos outros.
+        </p>
+
+        <div class="section-divider" aria-hidden="true">✧ ◇ ✧</div>
+
+        <section class="admin-dashboard" aria-labelledby="dashboard-title">
+
+          <h2 class="admin-heading" id="dashboard-title">
+            O painel de uma grande educadora
+          </h2>
+
+          <p class="admin-description">
+            Na Administração, resultados importantes são construídos
+            com conhecimento, planejamento, liderança e colaboração.
+          </p>
+
+          <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+              <span class="dashboard-icon" aria-hidden="true">📚</span>
+              <h3>Conhecimento</h3>
+              <p>Compartilhar saberes e abrir portas para novas oportunidades.</p>
+            </div>
+
+            <div class="dashboard-card">
+              <span class="dashboard-icon" aria-hidden="true">🎯</span>
+              <h3>Planejamento</h3>
+              <p>Transformar objetivos em caminhos de aprendizado.</p>
+            </div>
+
+            <div class="dashboard-card">
+              <span class="dashboard-icon" aria-hidden="true">🤝</span>
+              <h3>Liderança</h3>
+              <p>Inspirar pessoas e fortalecer a confiança em equipe.</p>
+            </div>
+
+            <div class="dashboard-card">
+              <span class="dashboard-icon" aria-hidden="true">🌱</span>
+              <h3>Desenvolvimento</h3>
+              <p>Incentivar talentos e ajudar novas ideias a crescer.</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="inspiration-chart" aria-labelledby="chart-title">
+
+          <h2 id="chart-title">O impacto de quem ensina</h2>
+
+          <p class="chart-description">
+            Uma representação simbólica das qualidades que tornam
+            o ensino tão especial.
+          </p>
+
+          <div class="bar-row">
+            <span class="bar-label">Conhecimento</span>
+            <div class="bar-track"><div class="bar bar-one"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <span class="bar-label">Organização</span>
+            <div class="bar-track"><div class="bar bar-two"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <span class="bar-label">Inspiração</span>
+            <div class="bar-track"><div class="bar bar-three"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <span class="bar-label">Dedicação</span>
+            <div class="bar-track"><div class="bar bar-four"></div></div>
+          </div>
+
+          <p class="chart-note">
+            Gráfico decorativo, sem representar dados medidos.
+            O valor de quem ensina vai muito além dos números.
+          </p>
+
+        </section>
+
+        <section class="management-cycle" aria-labelledby="cycle-title">
+
+          <h2 class="admin-heading" id="cycle-title">
+            O que torna a Professora Cida especial ♡
+          </h2>
+        
+          <p class="admin-description">
+            Mais do que ensinar Administração, existem qualidades humanas
+            que tornam uma professora inesquecível e fazem a diferença
+            na vida de quem tem a oportunidade de conhecê-la.
+          </p>
+        
+          <div class="cycle-grid">
+        
+            <div class="cycle-step">
+              <div class="cycle-number">♡</div>
+              <div class="cycle-icon" aria-hidden="true">🌷</div>
+              <h3>Acolhedora</h3>
+              <p>
+                Seu jeito acolhedor transmite carinho e faz as pessoas
+                se sentirem respeitadas, ouvidas e à vontade para aprender.
+              </p>
+            </div>
+        
+            <div class="cycle-step">
+              <div class="cycle-number">✧</div>
+              <div class="cycle-icon" aria-hidden="true">🤍</div>
+              <h3>Responsável</h3>
+              <p>
+                A responsabilidade demonstra compromisso com o que faz,
+                cuidado com cada detalhe e respeito pela importância
+                de ensinar e orientar outras pessoas.
+              </p>
+            </div>
+        
+            <div class="cycle-step">
+              <div class="cycle-number">✿</div>
+              <div class="cycle-icon" aria-hidden="true">📚</div>
+              <h3>Dedicada</h3>
+              <p>
+                Sua dedicação representa o valor de compartilhar
+                conhecimentos, incentivar o aprendizado e contribuir
+                para o crescimento de cada aluno.
+              </p>
+            </div>
+        
+            <div class="cycle-step">
+              <div class="cycle-number">☆</div>
+              <div class="cycle-icon" aria-hidden="true">✨</div>
+              <h3>Inspiradora</h3>
+              <p>
+                Uma boa professora ensina muito além dos conteúdos:
+                deixa aprendizados, desperta confiança e inspira
+                outras pessoas a acreditarem em seu potencial.
+              </p>
+            </div>
+        
+          </div>
+        
+          <p class="cycle-caption">
+            Professora Cida, que a sua responsabilidade seja reconhecida,
+            que a sua dedicação seja valorizada e que o acolhimento
+            que você transmite também esteja presente em seu caminho.
+            Porque ensinar com conhecimento é importante,
+            mas ensinar com humanidade torna tudo ainda mais especial. ♡
+          </p>
+        
+        </section>
+
+        <section class="org-chart" aria-labelledby="org-title">
+
+          <h2 class="admin-heading" id="org-title">
+            Uma rede de conhecimento
+          </h2>
+
+          <p class="admin-description">
+            Assim como em uma organização, cada pessoa pode contribuir
+            para um propósito maior.
+          </p>
+
+          <div class="org-top">
+            👩‍🏫 Professora Cida
+            <small>Conhecimento e inspiração</small>
+          </div>
+
+          <div class="org-stem" aria-hidden="true"></div>
+          <div class="org-branch" aria-hidden="true"></div>
+
+          <div class="org-grid">
+
+            <div class="org-node">
+              <span aria-hidden="true">💡</span>
+              Novas ideias
+            </div>
+
+            <div class="org-node">
+              <span aria-hidden="true">📈</span>
+              Crescimento
+            </div>
+
+            <div class="org-node">
+              <span aria-hidden="true">🤝</span>
+              Colaboração
+            </div>
+
+          </div>
+
+          <p class="org-caption">
+            Organograma simbólico: o conhecimento compartilhado conecta
+            pessoas, fortalece equipes e inspira novas possibilidades.
+          </p>
+
+        </section>
+
+        <section class="goals-panel" aria-labelledby="goals-title">
+
+          <h2 class="admin-heading" id="goals-title">
+            Um planejamento cheio de propósito
+          </h2>
+
+          <p class="admin-description">
+            Algumas das metas mais bonitas não cabem em uma planilha,
+            mas merecem ser celebradas todos os dias.
+          </p>
+
+          <div class="goal-item">
+            <div class="goal-icon" aria-hidden="true">🌷</div>
+            <div>
+              <h3>Semear conhecimento</h3>
+              <p>Compartilhar aprendizados que possam florescer em diferentes momentos da vida.</p>
+              <div class="goal-line"><span></span></div>
+            </div>
+          </div>
+
+          <div class="goal-item">
+            <div class="goal-icon" aria-hidden="true">🧠</div>
+            <div>
+              <h3>Desenvolver talentos</h3>
+              <p>Ajudar cada pessoa a descobrir habilidades e acreditar no próprio potencial.</p>
+              <div class="goal-line"><span></span></div>
+            </div>
+          </div>
+
+          <div class="goal-item">
+            <div class="goal-icon" aria-hidden="true">💜</div>
+            <div>
+              <h3>Construir relações</h3>
+              <p>Cultivar o respeito, a empatia e o trabalho em equipe.</p>
+              <div class="goal-line"><span></span></div>
+            </div>
+          </div>
+
+          <div class="goal-item">
+            <div class="goal-icon" aria-hidden="true">✨</div>
+            <div>
+              <h3>Inspirar o futuro</h3>
+              <p>Deixar contribuições positivas que continuem fazendo diferença ao longo do tempo.</p>
+              <div class="goal-line"><span></span></div>
+            </div>
+          </div>
+
+        </section>
+
+        <div class="section-divider" aria-hidden="true">✧ ♡ ✧</div>
+
+        <section aria-labelledby="values-title">
+
+          <h2 class="admin-heading" id="values-title">
+            Valores que fazem a diferença
+          </h2>
+
+          <p class="admin-description">
+            Em qualquer equipe ou organização, os resultados ganham
+            significado quando são acompanhados de bons valores.
+          </p>
+
+          <div class="values-strip">
+            <span class="value-tag">♡ Empatia</span>
+            <span class="value-tag">✧ Ética</span>
+            <span class="value-tag">◇ Compromisso</span>
+            <span class="value-tag">✿ Respeito</span>
+            <span class="value-tag">☆ Cooperação</span>
+          </div>
+
+        </section>
+
+        <p>
+          Professora Cida, que você nunca se esqueça de que ensinar tem
+          um alcance que nem sempre conseguimos medir. Às vezes, uma
+          atitude que parece pequena se torna uma lembrança enorme na
+          vida de alguém. Espero que você reconheça a importância do
+          que faz e o bem que pode deixar no mundo.
+        </p>
+
+        <p>
+          Que seus dias sejam cheios de paz, afeto, reconhecimento e
+          motivos para continuar acreditando na beleza daquilo que você
+          faz. Obrigado por fazer parte desse mundo de pessoas que
+          compartilham conhecimento e ajudam a tornar a caminhada um
+          pouco melhor.
+        </p>
+
+        <div class="poem">
+          <h2>✧ Pequena poesia ✧</h2>
+          <p>
+            Há quem ensine com palavras,<br>
+            e quem ensine também com o olhar;<br>
+            há quem acenda novas ideias<br>
+            e ajude outros sonhos a brotar.<br><br>
+
+            Que a vida lhe devolva em flores<br>
+            a bondade que espalha pelo caminho;<br>
+            e que nunca lhe faltem motivos,<br>
+            para sorrir com carinho.
+          </p>
+        </div>
+
+        <p class="closing">
+          Receba esta pequena homenagem com todo o carinho que ela carrega.
+        </p>
+
+        <div class="signature">
+          Com carinho e gratidão,<br>
+          uma pessoa que quis tornar seu dia um pouco mais feliz. ♡
+        </div>
+
+        <div class="tiny-hearts" aria-hidden="true">
+          ♡ ✿ ♡ ✿ ♡
+        </div>
+
+        <p class="final-message">
+          Que nunca faltem flores no seu caminho,<br>
+          reconhecimento na sua jornada<br>
+          e carinho em seu coração.
+        </p>
+
       </div>
     </article>
-    <p class="footer">Feito com carinho, especialmente para a professora Cida.</p>
-    <div class="toolbar" aria-label="Ações da carta">
-      <button type="button" id="copyBtn">♡ Copiar mensagem</button>
-      <button type="button" onclick="window.print()">Imprimir / salvar em PDF</button>
-    </div>
+
+    <p class="footer">
+      Feito por James Nascimento Matos
+    </p>
+
   </main>
+
   <script>
-    const copyBtn = document.getElementById('copyBtn');
-    copyBtn.addEventListener('click', async () => {
-      const text = document.getElementById('letterContent').innerText;
-      try {
-        await navigator.clipboard.writeText(text);
-        copyBtn.textContent = '✓ Mensagem copiada!';
-        setTimeout(() => copyBtn.textContent = '♡ Copiar mensagem', 2200);
-      } catch (error) {
-        const range = document.createRange();
-        range.selectNodeContents(document.getElementById('letterContent'));
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        copyBtn.textContent = 'Selecione e copie o texto';
+    /* Partículas discretas no fundo, atrás da carta e dos cards */
+    (() => {
+      const canvas = document.getElementById("adminParticles");
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let particles = [];
+      let frameId = null;
+
+      const isMobile = window.matchMedia("(max-width: 600px)").matches;
+      const count = isMobile ? 16 : 32;
+      const maxDistance = isMobile ? 65 : 100;
+
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - .5) * .2,
+          vy: (Math.random() - .5) * .2,
+          r: Math.random() * 1.2 + .5,
+          pink: Math.random() > .5
+        }));
+
+        draw(false);
       }
-    });
+
+      function draw(animate) {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          if (animate) {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+          }
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const distance = Math.hypot(dx, dy);
+
+            if (distance < maxDistance) {
+              const alpha = (1 - distance / maxDistance) * .09;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(157,115,177,${alpha})`;
+              ctx.lineWidth = .6;
+              ctx.stroke();
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.pink
+            ? "rgba(226,143,180,.42)"
+            : "rgba(174,126,203,.42)";
+          ctx.fill();
+        }
+
+        if (animate && !reduceMotion.matches) {
+          frameId = requestAnimationFrame(() => draw(true));
+        } else {
+          frameId = null;
+        }
+      }
+
+      function restartAnimation() {
+        if (frameId !== null) {
+          cancelAnimationFrame(frameId);
+          frameId = null;
+        }
+        draw(!reduceMotion.matches);
+      }
+
+      window.addEventListener("resize", resizeCanvas, { passive: true });
+
+      if (reduceMotion.addEventListener) {
+        reduceMotion.addEventListener("change", restartAnimation);
+      }
+
+      resizeCanvas();
+      restartAnimation();
+    })();
   </script>
+
 </body>
 </html>
