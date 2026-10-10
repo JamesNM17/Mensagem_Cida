@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b668f">
+  <title>Uma carta especial para a professora Cida</title>
+  <style>
+    :root {
+      --ink: #453347;
+      --muted: #735f76;
+      --paper: #fffdf9;
+      --lavender: #eee2f0;
+      --rose: #f8e5e7;
+      --accent: #8b668f;
+      --accent-dark: #65436b;
+      --gold: #d6ad62;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px 40px;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 14%, rgba(255,255,255,.8) 0 3px, transparent 4px),
+        radial-gradient(circle at 90% 20%, rgba(255,255,255,.7) 0 4px, transparent 5px),
+        linear-gradient(145deg, #f8e9ed, #efe7f5 52%, #fff4e5);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .page { width: min(100%, 760px); }
+    .toolbar {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+      margin: 0 0 18px;
+    }
+    button {
+      border: 1px solid rgba(101,67,107,.22); border-radius: 999px;
+      background: rgba(255,253,249,.9); color: var(--accent-dark);
+      padding: 11px 17px; font-size: .92rem; font-weight: 700;
+      cursor: pointer; box-shadow: 0 4px 14px rgba(69,51,71,.08);
+      transition: transform .18s ease, background .18s ease;
+    }
+    button:hover { transform: translateY(-2px); background: white; }
+    .letter {
+      position: relative; overflow: hidden;
+      background: var(--paper); border-radius: 22px;
+      padding: clamp(25px, 6vw, 58px);
+      box-shadow: 0 22px 60px rgba(83,55,86,.17);
+      border: 1px solid rgba(139,102,143,.18);
+    }
+    .letter::before {
+      content: ""; position: absolute; inset: 13px; border: 2px dashed #d8bfdc;
+      border-radius: 15px; pointer-events: none;
+    }
+    .content { position: relative; z-index: 1; }
+    .topline { text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .74rem; font-weight: 800; }
+    .flower { font-size: 2rem; line-height: 1.2; text-align: center; margin: 15px 0 8px; color: var(--gold); }
+    h1 { text-align: center; margin: 0; font-size: clamp(2.1rem, 7vw, 3.7rem); line-height: 1.05; color: var(--accent-dark); letter-spacing: -.04em; }
+    .subtitle { text-align: center; max-width: 470px; margin: 15px auto 30px; color: var(--muted); font-size: 1.03rem; line-height: 1.65; }
+    .ribbon { width: fit-content; margin: 0 auto 27px; padding: 9px 18px; border-radius: 20px 7px 20px 7px; background: var(--lavender); color: var(--accent-dark); font-weight: 800; transform: rotate(-1deg); }
+    .greeting { font-size: 1.18rem; font-weight: 800; margin: 0 0 12px; }
+    p { font-size: 1.02rem; line-height: 1.85; margin: 0 0 15px; }
+    .poem {
+      margin: 27px 0; padding: 22px 15px; text-align: center;
+      background: linear-gradient(135deg, #f5eaf6, #fff0ee); border-radius: 16px;
+      border-left: 4px solid var(--accent);
+    }
+    .poem h2 { font-size: 1.05rem; color: var(--accent-dark); margin: 0 0 13px; }
+    .poem p { font-family: Georgia, serif; font-style: italic; line-height: 1.75; margin: 0; }
+    .closing { margin-top: 24px; }
+    .signature { margin-top: 23px; font-weight: 800; color: var(--accent-dark); font-size: 1.08rem; }
+    .tiny-hearts { text-align: center; letter-spacing: .42em; color: #c47b98; margin: 26px 0 4px; font-size: 1.15rem; }
+    .footer { text-align: center; margin: 16px auto 0; font-size: .83rem; color: #7d6d80; }
+    @media (max-width: 480px) {
+      body { padding: 14px 10px 25px; }
+      .letter { padding: 34px 25px; }
+      .letter::before { inset: 8px; }
+      p { font-size: .97rem; }
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .toolbar, .footer { display: none; }
+      .page { width: 100%; }
+      .letter { box-shadow: none; border: none; border-radius: 0; padding: 24px 32px; }
+      .letter::before { inset: 8px; }
+      p { font-size: 11.5pt; line-height: 1.6; }
+      .poem { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="letter" aria-labelledby="title">
+      <div class="content" id="letterContent">
+        <div class="topline">Um presente feito com carinho</div>
+        <div class="flower" aria-hidden="true">✿ ✧ ❀ ✧ ✿</div>
+        <h1 id="title">Professora Cida</h1>
+        <div class="subtitle">Algumas pessoas deixam lembranças bonitas. Outras deixam um pouquinho de luz por onde passam.</div>
+        <div class="ribbon">Uma homenagem especial ♡</div>
+        <p class="greeting">Querida professora Cida,</p>
+        <p>Quero deixar registrado, em palavras simples, um sentimento muito bonito: a gratidão. Nem sempre conseguimos dizer pessoalmente o quanto a presença de alguém pode ser importante, então resolvi transformar esse carinho em uma pequena homenagem.</p>
+        <p>Ser professora é muito mais do que compartilhar conhecimentos. É participar de caminhos, despertar possibilidades e mostrar que sempre podemos aprender algo novo. Um gesto de atenção, uma palavra de incentivo ou um ensinamento podem permanecer na memória de alguém por muito tempo.</p>
+        <p>Por isso, espero que esta carta chegue até você como um abraço em forma de palavras. Que ela consiga trazer um sorriso ao seu rosto e alegrar seu coração, nem que seja só um pouquinho. Você merece receber também o carinho que tantas vezes a vida nos convida a oferecer aos outros.</p>
+        <div class="poem">
+          <h2>Pequena poesia</h2>
+          <p>Há quem ensine com palavras,<br>
+e quem ensine também com o olhar;<br>
+há quem acenda novas ideias<br>
+e ajude outros sonhos a brotar.<br><br>
+Que a vida lhe devolva em flores<br>
+a bondade que espalha pelo caminho;<br>
+e que nunca lhe faltem motivos,<br>
+para sorrir com carinho.</p>
+        </div>
+        <p>Professora Cida, que você nunca se esqueça de que ensinar tem um alcance que nem sempre conseguimos medir. Às vezes, uma atitude que parece pequena se torna uma lembrança enorme na vida de alguém. Espero que você reconheça a importância do que faz e o bem que pode deixar no mundo.</p>
+        <p>Que seus dias sejam cheios de paz, afeto, reconhecimento e motivos para continuar acreditando na beleza daquilo que você faz. Obrigado por fazer parte desse mundo de pessoas que compartilham conhecimento e ajudam a tornar a caminhada um pouco melhor.</p>
+        <p class="closing">Receba esta pequena homenagem com todo o carinho que ela carrega.</p>
+        <div class="signature">Com carinho e gratidão, <br>uma pessoa que quis tornar seu dia um pouco mais feliz. ♡</div>
+        <div class="tiny-hearts" aria-hidden="true">♡ ✿ ♡ ✿ ♡</div>
+      </div>
+    </article>
+    <p class="footer">Feito com carinho, especialmente para a professora Cida.</p>
+    <div class="toolbar" aria-label="Ações da carta">
+      <button type="button" id="copyBtn">♡ Copiar mensagem</button>
+      <button type="button" onclick="window.print()">Imprimir / salvar em PDF</button>
+    </div>
+  </main>
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.addEventListener('click', async () => {
+      const text = document.getElementById('letterContent').innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = '✓ Mensagem copiada!';
+        setTimeout(() => copyBtn.textContent = '♡ Copiar mensagem', 2200);
+      } catch (error) {
+        const range = document.createRange();
+        range.selectNodeContents(document.getElementById('letterContent'));
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        copyBtn.textContent = 'Selecione e copie o texto';
+      }
+    });
+  </script>
+</body>
+</html>
